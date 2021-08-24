@@ -524,7 +524,7 @@ query oneBook {
 
 [🏠 Back to Table of Contents](#table-of-content)
 
-## 2. Getting started with SAI (Storage Attached Index)
+## 6. Getting started with SAI (Storage Attached Index)
 
 **SAI** is short for **Storage Attached Indexes**, it allows us to build indexes on Cassandra tables that dramatically improve the flexibility of Cassandra queries.
 
@@ -534,7 +534,7 @@ To learn more about **SAI** from a **technical perspective**, have a look at our
 
 Now, let's get into some examples. The first thing we'll need is a table and some data to work with. For that we need to talk about my dentist, or really, a contrived example of a client data model a dentist might need to use.
 
-**✅ Step 2a. Navigate to the CQL Console and login to the database**
+**✅ Step 6a. Navigate to the CQL Console and login to the database**
 
 In the Summary screen for your database, select **_CQL Console_** from the top menu in the main window. This will take you to the CQL Console with a login prompt.
 
@@ -542,7 +542,7 @@ In the Summary screen for your database, select **_CQL Console_** from the top m
 
 Once you click the _`CQL Console`_ tab it will automatically log you in and present you with a `token@cqlsh>` prompt.
 
-**✅ Step 2b. Describe keyspaces and USE `sa_index`**
+**✅ Step 6b. Describe keyspaces and USE `sa_index`**
 
 Ok, you're logged in, and now we're ready to rock. Creating tables is quite easy, but before we create one we need to tell the database which keyspace we are working with.
 
@@ -574,7 +574,7 @@ use sa_index;
 
 Notice how the prompt displays `token@cqlsh:sa_index>` informing us we are **using** the **_sa_index_** keyspace. Now we are ready to create our tables.
 
-**✅ Step 2c. Create a _`clients`_ table and insert some data**
+**✅ Step 6c. Create a _`clients`_ table and insert some data**
 
 Create the table.
 
@@ -642,7 +642,7 @@ INSERT INTO clients (uniqueid, firstname, lastname, birthday, nextappt, newpatie
 VALUES (F4DB7673-CA4E-4382-BDCD-2C1704363595, 'Sven', 'Åskådare', '1967-11-07', '2020-10-21 14:00:00', false, 'imageurl');
 ```
 
-**✅ Step 2d. Verify data exists**
+**✅ Step 26. Verify data exists**
 
 Now let's take a look at the data we just inserted.
 
@@ -656,7 +656,7 @@ SELECT * FROM clients;
 
 ![select from client table](https://user-images.githubusercontent.com/23346205/97189410-f2176300-177a-11eb-90ca-3604f113520f.png)
 
-**✅ Step 2e. Create some indexes**
+**✅ Step 6e. Create some indexes**
 
 Ok great, we have data in our table, but remember we used **_`uniqueid`_** as our **primary key** when we created the table. If we want to query a single patient, we'd have to do that by the **_`uniqueid`_** column because that's our **partition key** _(don't forget, a single value in the primary key is always the partition key)_.
 
@@ -690,7 +690,7 @@ WITH OPTIONS = {'case_sensitive': false, 'normalize': true };
 CREATE CUSTOM INDEX IF NOT EXISTS ON clients(birthday) USING 'StorageAttachedIndex';
 ```
 
-**✅ Step 2f. Execute queries that use firstname, lastname, and birthday using our indexes**
+**✅ Step 6f. Execute queries that use firstname, lastname, and birthday using our indexes**
 
 Remember, the **`clients`** table data model only includes **`uniqueid`** in the primary key. In the traditional Cassandra sense I can only query against the **`uniqueid`** column in the **WHERE** clause. However, with our **SAIndexes** now added we can do a lot more.
 
@@ -752,7 +752,7 @@ AND birthday > '1984-01-01' AND birthday < '1985-01-01';
 
 ![clients where name and birthday range](https://user-images.githubusercontent.com/23346205/97200012-0f522e80-1787-11eb-8aa9-d3c22049dd4b.png)
 
-**✅ Step 2g. Digest everything we just did there**
+**✅ Step 6g. Digest everything we just did there**
 
 Ok, so let's break that all down. I said earlier when we created the indexes I would explain the options included with some of the indexes.
 
@@ -782,7 +782,7 @@ To sum up, we queried against a combination of string and date fields using exac
 
 Let's do more.
 
-**✅ Step 2h. Add another index to support a new data model requirement**
+**✅ Step 6h. Add another index to support a new data model requirement**
 
 Imagine a case where we now have a requirement to find clients based off of their next appointment.
 
