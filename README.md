@@ -20,11 +20,11 @@ This intructions will lead you to step by step operations for the Cassandra Day 
 
 **`ASTRA`** is the simplest way to run Cassandra with zero operations at all - just push the button and get your cluster. No credit card required, $25.00 USD credit every month, roughly 5M writes, 30M reads, 40GB storage monthly - sufficient to run small production workloads.
 
-✅ Register (if needed) and Sign In to Astra [https://astra.datastax.com](https://dtsx.io/workshop): You can use your `Github`, `Google` accounts or register with an `email`.
+✅ **Step 1a** Register (if needed) and Sign In to Astra [https://astra.datastax.com](https://dtsx.io/workshop): You can use your `Github`, `Google` accounts or register with an `email`.
 
 _Make sure to chose a password with minimum 8 characters, containing upper and lowercase letters, at least one number and special character_
 
-✅ Create a "free tier" plan
+✅ **Step 1b** Create a "free tier" plan
 
 Follow this [guide](https://docs.datastax.com/en/astra/docs/creating-your-astra-database.html), to set up a pay as you go database with a free $25 monthly credit.
 
@@ -50,13 +50,13 @@ The status will change to `Active` when the database is ready, this will only ta
 
 ## 2. Working with Cassandra
 
-**✅ Check that our keyspace exist**
+**✅ 2a Check that our keyspace exist**
 
 ```sql
 describe keyspaces;
 ```
 
-**✅ Create Entities**
+**✅ 2b Create Entities**
 
 ```sql
 use keyspace1;
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS videos (
 describe keyspace1;
 ```
 
-**✅ Use the data model** :
+**✅ 2c Use the data model** :
 
 - Insert value using plain CQL
 
@@ -115,6 +115,8 @@ INSERT INTO videos JSON '{
 }';
 ```
 
+**✅ 2d Select Values** :
+
 - Read values
 
 ```sql
@@ -133,7 +135,7 @@ select * from videos where videoid=e466f561-4ea4-4eb7-8dcc-126e0fbfd573;
 
 To use the API we will need a token please create a token following the instructions here
 
-✅ [Create a token for your app](https://docs.datastax.com/en/astra/docs/manage-application-tokens.html) to use in the settings screen
+✅ **Step3a** [Create a token for your app](https://docs.datastax.com/en/astra/docs/manage-application-tokens.html) to use in the settings screen
 
 Copy the token value (eg `AstraCS:KDfdKeNREyWQvDpDrBqwBsUB:ec80667c....`) in your clipboard and save the CSV this value would not be provided afterward.
 
@@ -149,13 +151,13 @@ Now launch the swagger UI
 + During this hands-on we will use the API in version 2
 ```
 
-**✅ Create a new keyspaces** :
+**✅ Step 3b. Create a new keyspaces** :
 
 On the dashboard locate the `Add Keyspace` button in the bottom, on the tab enter the value `keyspace2`.
 
 ![image](pics/add-keyspace.png?raw=true)
 
-**✅ List keyspaces** :
+**✅ Step 3c. List keyspaces** :
 
 Locate the `SCHEMAS` part of the API and then `[GET] /v2/schemas/keyspaces`
 
@@ -165,9 +167,9 @@ Locate the `SCHEMAS` part of the API and then `[GET] /v2/schemas/keyspaces`
 - Provide your token in the field `X-Cassandra-Token` _(looks like AstraCS:...)_
 - Click on `Execute`
 
-**✅ Creating a Table** :
+**✅ Step 3d. Creating a Table** :
 
-- [POST] ​/v2/schemas/keyspaces/{keyspaceName}/tables _Add a table_
+- [POST] ​/v2/schemas/keyspaces/{keyspaceName}/tables
 - X-Cassandra-Token: `<your_token>`
 - keyspace: `keyspace2`
 - Data
@@ -209,7 +211,7 @@ Now Locate the `DATA` part of the API
 **👁️ Expected output**
 ![image](pics/astra-data.png?raw=true)
 
-**✅ Insert a row** :
+**✅ Step 3e. Insert a row** :
 
 - [createRow]
 - X-Cassandra-Token: `<your_token>`
@@ -228,7 +230,7 @@ Now Locate the `DATA` part of the API
 }
 ```
 
-**✅ Read data** :
+**✅ Step 3f. Read data** :
 
 - [getAllRows]
 - X-Cassandra-Token: `<your_token>`

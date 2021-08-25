@@ -1,0 +1,2185 @@
+{
+	"info": {
+		"_postman_id": "6972b91e-7553-4a7d-af0d-f3ed151160bd",
+		"name": "Astra",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Devops API",
+			"item": [
+				{
+					"name": "databases",
+					"item": [
+						{
+							"name": "[Devops] - Returns a list of databases",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {},
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{bearerToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://api.astra.datastax.com/v2/databases?include=nonterminated&provider=ALL&limit=25",
+									"protocol": "https",
+									"host": [
+										"api",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"v2",
+										"databases"
+									],
+									"query": [
+										{
+											"key": "include",
+											"value": "nonterminated"
+										},
+										{
+											"key": "provider",
+											"value": "ALL"
+										},
+										{
+											"key": "limit",
+											"value": "25"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Devops] - Create a new Database",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{bearerToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n     \"name\":\"db_created_with_postman\",\n     \"keyspace\": \"ks1\",\n     \"cloudProvider\": \"AWS\",\n     \"region\":\"us-east-1\",\n     \"tier\":\"A5\",\n     \"capacityUnits\":1,\n     \"user\":\"astraUser\",\n     \"password\":\"astraPassword1\"\n}"
+								},
+								"url": {
+									"raw": "https://api.astra.datastax.com/v2/databases",
+									"protocol": "https",
+									"host": [
+										"api",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"v2",
+										"databases"
+									]
+								},
+								"description": "https://docs.astra.datastax.com/reference#createdatabase-1"
+							},
+							"response": []
+						},
+						{
+							"name": "[Devops] - Find database by id",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {},
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"type": "text",
+										"value": "{{token}}",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{bearerToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://api.astra.datastax.com/v2/databases/{{targetDatabaseId}}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"v2",
+										"databases",
+										"{{targetDatabaseId}}"
+									]
+								},
+								"description": "https://docs.astra.datastax.com/reference#getdatabase-1"
+							},
+							"response": []
+						},
+						{
+							"name": "[Devops] - Adds keyspace into database",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{bearerToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://api.astra.datastax.com/v2/databases/{{targetDatabaseId}}/keyspaces/keyspace_added_with_postman",
+									"protocol": "https",
+									"host": [
+										"api",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"v2",
+										"databases",
+										"{{targetDatabaseId}}",
+										"keyspaces",
+										"keyspace_added_with_postman"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Devops] - Obtain zip for connecting to the database",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{bearerToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://api.astra.datastax.com/v2/databases/{{targetDatabaseId}}/secureBundleURL",
+									"protocol": "https",
+									"host": [
+										"api",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"v2",
+										"databases",
+										"{{targetDatabaseId}}",
+										"secureBundleURL"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Devops] - Terminates a database",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{bearerToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://api.astra.datastax.com/v2/databases/{{targetDatabaseId}}/terminate",
+									"protocol": "https",
+									"host": [
+										"api",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"v2",
+										"databases",
+										"{{targetDatabaseId}}",
+										"terminate"
+									]
+								},
+								"description": "https://docs.astra.datastax.com/reference#terminatedatabase-1"
+							},
+							"response": []
+						},
+						{
+							"name": "[Devops] - Park a database",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{bearerToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://api.astra.datastax.com/v2/databases/{{targetDatabaseId}}/park",
+									"protocol": "https",
+									"host": [
+										"api",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"v2",
+										"databases",
+										"{{targetDatabaseId}}",
+										"park"
+									]
+								},
+								"description": "https://docs.astra.datastax.com/reference#parkdatabase-1"
+							},
+							"response": []
+						},
+						{
+							"name": "[Devops] - UnPark a database",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{bearerToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://api.astra.datastax.com/v2/databases/{{targetDatabaseId}}/unpark",
+									"protocol": "https",
+									"host": [
+										"api",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"v2",
+										"databases",
+										"{{targetDatabaseId}}",
+										"unpark"
+									]
+								},
+								"description": "https://docs.astra.datastax.com/reference#unparkdatabase-1"
+							},
+							"response": []
+						},
+						{
+							"name": "[Devops] - Resizes a database",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{bearerToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"capacityUnits\":2\n}"
+								},
+								"url": {
+									"raw": "https://api.astra.datastax.com/v2/databases/{{targetDatabaseId}}/resize",
+									"protocol": "https",
+									"host": [
+										"api",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"v2",
+										"databases",
+										"{{targetDatabaseId}}",
+										"resize"
+									]
+								},
+								"description": "https://docs.astra.datastax.com/reference#resizedatabase-1"
+							},
+							"response": []
+						},
+						{
+							"name": "[Devops] - Reset Password",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{bearerToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"astraUser\",\n    \"password\":\"astraPassword1\"\n}"
+								},
+								"url": {
+									"raw": "https://api.astra.datastax.com/v2/databases/{{targetDatabaseId}}/resetPassword",
+									"protocol": "https",
+									"host": [
+										"api",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"v2",
+										"databases",
+										"{{targetDatabaseId}}",
+										"resetPassword"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Devops] - Returns supported regions and availability for a given user",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true,
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{bearerToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://api.astra.datastax.com/v2/availableRegions",
+									"protocol": "https",
+									"host": [
+										"api",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"v2",
+										"availableRegions"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "iam",
+					"item": [
+						{
+							"name": "roles",
+							"item": [
+								{
+									"name": "[Devops] - Create a role",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {}
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{bearerToken}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"RoleY\",\n  \"policy\": {\n    \"description\": \"Test Roles description\",\n    \"resources\": [\n      \"drn:astra:org:f9460f14-9879-4ebe-83f2-48d3f3dce13c\",\n      \"drn:astra:org:f9460f14-9879-4ebe-83f2-48d3f3dce13c:db:*\",\n      \"drn:astra:org:f9460f14-9879-4ebe-83f2-48d3f3dce13c:db:*:keyspace:*\",\n      \"drn:astra:org:f9460f14-9879-4ebe-83f2-48d3f3dce13c:db:*:keyspace:*:table:*\"\n    ],\n    \"actions\": [\n      \"org-read\",\n      \"org-write\",\n      \"org-audits-read\",\n      \"org-role-read\",\n      \"org-role-write\",\n      \"org-role-delete\",\n      \"org-external-auth-read\",\n      \"org-external-auth-write\",\n      \"org-notification-write\",\n      \"org-token-read\",\n      \"org-token-write\",\n      \"org-billing-read\",\n      \"org-billing-write\",\n      \"org-user-read\",\n      \"org-user-write\",\n      \"org-db-create\",\n      \"org-db-passwordreset\",\n      \"org-db-terminate\",\n      \"org-db-suspend\",\n      \"org-db-addpeering\",\n      \"org-db-managemigratorproxy\",\n      \"org-db-expand\",\n      \"org-db-view\",\n      \"db-all-keyspace-create\",\n      \"db-all-keyspace-describe\",\n      \"db-keyspace-grant\",\n      \"db-keyspace-modify\",\n      \"db-keyspace-describe\",\n      \"db-keyspace-create\",\n      \"db-keyspace-authorize\",\n      \"db-keyspace-alter\",\n      \"db-keyspace-drop\",\n      \"db-table-select\",\n      \"db-table-grant\",\n      \"db-table-modify\",\n      \"db-table-describe\",\n      \"db-table-create\",\n      \"db-table-authorize\",\n      \"db-table-alter\",\n      \"db-table-drop\",\n      \"db-graphql\",\n      \"db-rest\",\n      \"db-cql\"\n    ],\n    \"effect\": \"allow\"\n  }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://api.astra.datastax.com/v2/organizations/roles",
+											"protocol": "https",
+											"host": [
+												"api",
+												"astra",
+												"datastax",
+												"com"
+											],
+											"path": [
+												"v2",
+												"organizations",
+												"roles"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[Devops] - Update a role",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {}
+									},
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{bearerToken}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"RoleX\",\n  \"policy\": {\n    \"description\": \"Test Roles description\",\n    \"resources\": [\n      \"drn:astra:org:f9460f14-9879-4ebe-83f2-48d3f3dce13c\",\n      \"drn:astra:org:f9460f14-9879-4ebe-83f2-48d3f3dce13c:db:*\",\n      \"drn:astra:org:f9460f14-9879-4ebe-83f2-48d3f3dce13c:db:*:keyspace:*\",\n      \"drn:astra:org:f9460f14-9879-4ebe-83f2-48d3f3dce13c:db:*:keyspace:*:table:*\"\n    ],\n    \"actions\": [\n      \"org-read\",\n      \"org-write\",\n      \"org-audits-read\",\n      \"org-role-read\",\n      \"org-role-write\",\n      \"org-role-delete\",\n      \"org-external-auth-read\",\n      \"org-external-auth-write\",\n      \"org-notification-write\",\n      \"org-token-read\",\n      \"org-token-write\",\n      \"org-billing-read\",\n      \"org-billing-write\",\n      \"org-user-read\",\n      \"org-user-write\",\n      \"org-db-create\",\n      \"org-db-passwordreset\",\n      \"org-db-terminate\",\n      \"org-db-suspend\",\n      \"org-db-addpeering\",\n      \"org-db-managemigratorproxy\",\n      \"org-db-expand\",\n      \"org-db-view\",\n      \"db-all-keyspace-create\",\n      \"db-all-keyspace-describe\",\n      \"db-keyspace-grant\",\n      \"db-keyspace-modify\",\n      \"db-keyspace-describe\",\n      \"db-keyspace-create\",\n      \"db-keyspace-authorize\",\n      \"db-keyspace-alter\",\n      \"db-keyspace-drop\",\n      \"db-table-select\",\n      \"db-table-grant\",\n      \"db-table-modify\",\n      \"db-table-describe\",\n      \"db-table-create\",\n      \"db-table-authorize\",\n      \"db-table-alter\",\n      \"db-table-drop\",\n      \"db-graphql\",\n      \"db-rest\",\n      \"db-cql\"\n    ],\n    \"effect\": \"allow\"\n  }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://api.astra.datastax.com/v2/organizations/roles/0d3749ed-e5c1-43d5-8774-6b38f7ce0cec",
+											"protocol": "https",
+											"host": [
+												"api",
+												"astra",
+												"datastax",
+												"com"
+											],
+											"path": [
+												"v2",
+												"organizations",
+												"roles",
+												"0d3749ed-e5c1-43d5-8774-6b38f7ce0cec"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[Devops] - Find all roles in organization",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {},
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{bearerToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://api.astra.datastax.com/v2/organizations/roles",
+											"protocol": "https",
+											"host": [
+												"api",
+												"astra",
+												"datastax",
+												"com"
+											],
+											"path": [
+												"v2",
+												"organizations",
+												"roles"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[Devops] - Find a role by id",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {},
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{bearerToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://api.astra.datastax.com/v2/organizations/roles/b4ed0e9e-67e8-47b6-8b58-c6629be961a9",
+											"protocol": "https",
+											"host": [
+												"api",
+												"astra",
+												"datastax",
+												"com"
+											],
+											"path": [
+												"v2",
+												"organizations",
+												"roles",
+												"b4ed0e9e-67e8-47b6-8b58-c6629be961a9"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[Devops] - Delete a role",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{bearerToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://api.astra.datastax.com/v2/organizations/roles/c0bfeab5-c132-41c3-bcd1-cc8897cc94bd",
+											"protocol": "https",
+											"host": [
+												"api",
+												"astra",
+												"datastax",
+												"com"
+											],
+											"path": [
+												"v2",
+												"organizations",
+												"roles",
+												"c0bfeab5-c132-41c3-bcd1-cc8897cc94bd"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "tokens",
+							"item": [
+								{
+									"name": "[Devops] - Get clientIds",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {},
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{bearerToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://api.astra.datastax.com/v2/clientIdSecrets",
+											"protocol": "https",
+											"host": [
+												"api",
+												"astra",
+												"datastax",
+												"com"
+											],
+											"path": [
+												"v2",
+												"clientIdSecrets"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[Devops] - Delete a clientId",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{bearerToken}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://api.astra.datastax.com/v2/clientIdSecrets/MbWiJSsqoxFwilHzbqPBmMAm",
+											"protocol": "https",
+											"host": [
+												"api",
+												"astra",
+												"datastax",
+												"com"
+											],
+											"path": [
+												"v2",
+												"clientIdSecrets",
+												"MbWiJSsqoxFwilHzbqPBmMAm"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[Devops] - Create a token",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {}
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{bearerToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://api.astra.datastax.com/v2/clientIdSecrets",
+											"protocol": "https",
+											"host": [
+												"api",
+												"astra",
+												"datastax",
+												"com"
+											],
+											"path": [
+												"v2",
+												"clientIdSecrets"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "users",
+							"item": [
+								{
+									"name": "[Devops] - Find all users in organization",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {},
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{bearerToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://api.astra.datastax.com/v2/organizations/users",
+											"protocol": "https",
+											"host": [
+												"api",
+												"astra",
+												"datastax",
+												"com"
+											],
+											"path": [
+												"v2",
+												"organizations",
+												"users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[Devops] - Find a user by its id",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {},
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{bearerToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://api.astra.datastax.com/v2/organizations/users/825bd3d3-82ae-404b-9aad-bbb4c53da315",
+											"protocol": "https",
+											"host": [
+												"api",
+												"astra",
+												"datastax",
+												"com"
+											],
+											"path": [
+												"v2",
+												"organizations",
+												"users",
+												"825bd3d3-82ae-404b-9aad-bbb4c53da315"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[Devops] - Invite user to org",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {}
+									},
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{bearerToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"OrgID\": \"f9460f14-9879-4ebe-83f2-48d3f3dce13c\",\n    \"email\": \"cedrick.lunven@gmail.com\",\n    \"roles\": [\n        \"67c4b5dc-dd3f-4b2d-be51-09be12836d57\"\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://api.astra.datastax.com/v2/organizations/users",
+											"protocol": "https",
+											"host": [
+												"api",
+												"astra",
+												"datastax",
+												"com"
+											],
+											"path": [
+												"v2",
+												"organizations",
+												"users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[Devops] - Delete user",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{bearerToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://api.astra.datastax.com/v2/organizations/users/825bd3d3-82ae-404b-9aad-bbb4c53da317",
+											"protocol": "https",
+											"host": [
+												"api",
+												"astra",
+												"datastax",
+												"com"
+											],
+											"path": [
+												"v2",
+												"organizations",
+												"users",
+												"825bd3d3-82ae-404b-9aad-bbb4c53da317"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[Devops] - Update Roles of user",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {}
+									},
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{bearerToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \n    \"roles\":[ \n        \"74b7d8b1-ecf1-48e5-a35f-0f999d369889\", \"b4ed0e9e-67e8-47b6-8b58-c6629be961a9\"\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://api.astra.datastax.com/v2/organizations/users/825bd3d3-82ae-404b-9aad-bbb4c53da315/roles",
+											"protocol": "https",
+											"host": [
+												"api",
+												"astra",
+												"datastax",
+												"com"
+											],
+											"path": [
+												"v2",
+												"organizations",
+												"users",
+												"825bd3d3-82ae-404b-9aad-bbb4c53da315",
+												"roles"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "[Devops] - Get current Organization",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true,
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{bearerToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://api.astra.datastax.com/v2/currentOrg",
+									"protocol": "https",
+									"host": [
+										"api",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"v2",
+										"currentOrg"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "streaming",
+					"item": [
+						{
+							"name": "tenants",
+							"item": [
+								{
+									"name": "[Devops] - Get tenants",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {},
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{bearerToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://api.astra.datastax.com/v2/streaming/tenants",
+											"protocol": "https",
+											"host": [
+												"api",
+												"astra",
+												"datastax",
+												"com"
+											],
+											"path": [
+												"v2",
+												"streaming",
+												"tenants"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[Devops] - Get tenants limits",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {},
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{bearerToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://api.astra.datastax.com/v2/streaming/tenants/cedrick_lunven/limits",
+											"protocol": "https",
+											"host": [
+												"api",
+												"astra",
+												"datastax",
+												"com"
+											],
+											"path": [
+												"v2",
+												"streaming",
+												"tenants",
+												"cedrick_lunven",
+												"limits"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[Devops] -  Test existence",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {},
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "HEAD",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{bearerToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://api.astra.datastax.com/v2/streaming/tenants/cedrick_lunvenc/",
+											"protocol": "https",
+											"host": [
+												"api",
+												"astra",
+												"datastax",
+												"com"
+											],
+											"path": [
+												"v2",
+												"streaming",
+												"tenants",
+												"cedrick_lunvenc",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[Devops] - Create Tenant",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {}
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{bearerToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\"cloudProvider\": \"aws\",\n\"cloudRegion\": \"useast2\",\n\"plan\": \"free\",\n\"tenantName\": \"postman_tenant\",\n\"userEmail\": \"cedrick.lunven@datastax.com\"\n}"
+										},
+										"url": {
+											"raw": "https://api.astra.datastax.com/v2/streaming/tenants",
+											"protocol": "https",
+											"host": [
+												"api",
+												"astra",
+												"datastax",
+												"com"
+											],
+											"path": [
+												"v2",
+												"streaming",
+												"tenants"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[Devops] - Delete a Tenant",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{bearerToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\"cloudProvider\": \"aws\",\n\"cloudRegion\": \"useast2\",\n\"plan\": \"free\",\n\"tenantName\": \"postman_tenant\",\n\"userEmail\": \"cedrick.lunven@datastax.com\"\n}"
+										},
+										"url": {
+											"raw": "https://api.astra.datastax.com/v2/streaming/tenants/postman_tenant/clusters/pulsar-aws-useast2",
+											"protocol": "https",
+											"host": [
+												"api",
+												"astra",
+												"datastax",
+												"com"
+											],
+											"path": [
+												"v2",
+												"streaming",
+												"tenants",
+												"postman_tenant",
+												"clusters",
+												"pulsar-aws-useast2"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "providers",
+							"item": [
+								{
+									"name": "[Devops] - Get providers",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {},
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{bearerToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://api.astra.datastax.com/v2/streaming/providers",
+											"protocol": "https",
+											"host": [
+												"api",
+												"astra",
+												"datastax",
+												"com"
+											],
+											"path": [
+												"v2",
+												"streaming",
+												"providers"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Document API",
+			"item": [
+				{
+					"name": "namespaces",
+					"item": [
+						{
+							"name": "[Namespace] - List Namespaces",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"type": "text",
+										"value": "{{token}}"
+									}
+								],
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/schemas/namespaces/",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"schemas",
+										"namespaces",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Namespace] - Get Namespace Details",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"type": "text",
+										"value": "{{token}}"
+									}
+								],
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/schemas/namespaces/{{namespace}}",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"schemas",
+										"namespaces",
+										"{{namespace}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Namespace] - Create a namespace",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"type": "text",
+										"value": "{{token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"{{namespace}}\",\n   \"datacenters\":\n      [\n         { \"name\": \"dc-1\", \"replicas\": 1 }\n      ]\n}"
+								},
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/schemas/namespaces/",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"schemas",
+										"namespaces",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Namespace] - Delete a namespace",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"type": "text",
+										"value": "{{token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/schemas/namespaces/{{namespace}}",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"schemas",
+										"namespaces",
+										"{{namespace}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "collections",
+					"item": [
+						{
+							"name": "[Collection] - List Collections in a namespace",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"type": "text",
+										"value": "{{token}}"
+									}
+								],
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/namespaces/{{namespace}}/collections",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"namespaces",
+										"{{namespace}}",
+										"collections"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Collection] - Create a Collection",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"content-type": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"type": "text",
+										"value": "{{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \n     \"name\": \"mynewcollection\"\n}"
+								},
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/namespaces/{{namespace}}/collections/",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"namespaces",
+										"{{namespace}}",
+										"collections",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Collection] - Upgrade a Collection",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"content-type": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"type": "text",
+										"value": "{{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \n     \"name\": \"mynewcollection\"\n}"
+								},
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/namespaces/{{namespace}}/collections/person/upgrade",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"namespaces",
+										"{{namespace}}",
+										"collections",
+										"person",
+										"upgrade"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Collection] - Delete a Collection",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"type": "text",
+										"value": "{{token}}"
+									}
+								],
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/namespaces/{{keyspace}}/collections/person",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"namespaces",
+										"{{keyspace}}",
+										"collections",
+										"person"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "documents",
+					"item": [
+						{
+							"name": "[Document] - Create a document (no id)",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"Cedrick\", \n    \"lastname\": \"Loulou\",\n    \"age\":50,\n    \"contries\":[\"France\",\"USA\"],\n    \"address\": {\n        \"city\":\"Paris\",\n        \"zipCode\":75000\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/namespaces/{{keyspace}}/collections/person/",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"namespaces",
+										"{{keyspace}}",
+										"collections",
+										"person",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Document] - Upsert a document (with id)",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"Cedrick\", \n    \"lastname\": \"Lunven\",\n    \"age\":38,\n    \"countries\":[\"France\",\"USA\"],\n    \"address\": {\n        \"street\":\"Gautier\",\n        \"zipcode\":53120\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/namespaces/{{keyspace}}/collections/person/person1",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"namespaces",
+										"{{keyspace}}",
+										"collections",
+										"person",
+										"person1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Document] - Update a subpart",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"loulou\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/namespaces/{{keyspace}}/collections/person/person1",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"namespaces",
+										"{{keyspace}}",
+										"collections",
+										"person",
+										"person1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Document] - Get a document by id",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"type": "text",
+										"value": "{{token}}"
+									}
+								],
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/namespaces/{{keyspace}}/collections/person/person1?raw=true",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"namespaces",
+										"{{keyspace}}",
+										"collections",
+										"person",
+										"person1"
+									],
+									"query": [
+										{
+											"key": "raw",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Document] - Get a document SUBPART Object",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"type": "text",
+										"value": "{{token}}"
+									}
+								],
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/namespaces/{{keyspace}}/collections/person/person1/address?raw=true",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"namespaces",
+										"{{keyspace}}",
+										"collections",
+										"person",
+										"person1",
+										"address"
+									],
+									"query": [
+										{
+											"key": "raw",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Document] - Get a document SUBPART List",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"type": "text",
+										"value": "{{token}}"
+									}
+								],
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/namespaces/{{keyspace}}/collections/person/person1/countries?raw=true",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"namespaces",
+										"{{keyspace}}",
+										"collections",
+										"person",
+										"person1",
+										"countries"
+									],
+									"query": [
+										{
+											"key": "raw",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Document] - Get a document SUBPART Scalar",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"type": "text",
+										"value": "{{token}}"
+									}
+								],
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/namespaces/{{keyspace}}/collections/person/person1/firstname?raw=true",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"namespaces",
+										"{{keyspace}}",
+										"collections",
+										"person",
+										"person1",
+										"firstname"
+									],
+									"query": [
+										{
+											"key": "raw",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Document] -Update SUBPART",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"content-length": true,
+									"content-type": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"type": "text",
+										"value": "{{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"city\": \"city3\", \"zipCode\": 12 }"
+								},
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/namespaces/{{namespace}}/collections/person/person1/address",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"namespaces",
+										"{{namespace}}",
+										"collections",
+										"person",
+										"person1",
+										"address"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Document] - Delete a document by id",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"type": "text",
+										"value": "{{token}}"
+									}
+								],
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/namespaces/{{keyspace}}/collections/person/person1",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"namespaces",
+										"{{keyspace}}",
+										"collections",
+										"person",
+										"person1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Document] - Search clause where",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"type": "text",
+										"value": "{{token}}"
+									}
+								],
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/namespaces/{{keyspace}}/collections/person?page-size=20&where={\"age\": {\"$gte\": 40}}&sort=[\"lastname\"]",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"namespaces",
+										"{{keyspace}}",
+										"collections",
+										"person"
+									],
+									"query": [
+										{
+											"key": "page-size",
+											"value": "20"
+										},
+										{
+											"key": "where",
+											"value": "{\"age\": {\"$gte\": 40}}"
+										},
+										{
+											"key": "fields",
+											"value": "[\"age\",\"lastname\",\"firstname\",\"countries\"]",
+											"disabled": true
+										},
+										{
+											"key": "raw",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "[\"lastname\"]"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Rest API",
+			"item": [
+				{
+					"name": "keyspaces",
+					"item": [
+						{
+							"name": "[Schema] - List Keyspaces",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"type": "text",
+										"value": "{{token}}"
+									}
+								],
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/schemas/keyspaces/",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"schemas",
+										"keyspaces",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[Schema] - Get Keyspace Details",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"type": "text",
+										"value": "{{token}}"
+									}
+								],
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/schemas/keyspaces/",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"schemas",
+										"keyspaces",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Read all keyspaces",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Cassandra-Token",
+										"value": "{{token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/schemas/keyspaces",
+									"protocol": "https",
+									"host": [
+										"{{db}}-{{region}}",
+										"apps",
+										"astra",
+										"datastax",
+										"com"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v2",
+										"schemas",
+										"keyspaces"
+									]
+								},
+								"description": "Get the list of all keyspaces in the database"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "tables",
+					"item": []
+				},
+				{
+					"name": "records",
+					"item": []
+				}
+			]
+		}
+	]
+}
